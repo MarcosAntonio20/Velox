@@ -1,0 +1,78 @@
+/* ==========================================================================
+   StarRating — bloco .star-rating
+   Cada estrela é um ícone "vazio" com um ícone "preenchido" sobreposto e
+   recortado (100% ou 50% da largura) para exibir estrela cheia ou meia estrela.
+   Tamanhos: padrão (16px), --sm (14px), --lg (20px).
+   ========================================================================== */
+
+.star-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.star-rating__stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.star-rating__star {
+  position: relative;
+  display: inline-flex;
+}
+
+.star-rating__icon {
+  display: block;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.star-rating__icon--empty {
+  color: var(--color-border);
+  fill: var(--color-border);
+}
+
+.star-rating__icon--filled {
+  color: var(--color-warning);
+  fill: var(--color-warning);
+}
+
+.star-rating__fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+}
+
+.star-rating__fill--full {
+  width: 100%;
+}
+
+.star-rating__fill--half {
+  width: 50%;
+}
+
+.star-rating__count {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* --- Tamanhos ------------------------------------------------------------ */
+
+.star-rating--sm .star-rating__icon {
+  width: 14px;
+  height: 14px;
+}
+
+.star-rating--lg .star-rating__icon {
+  width: 20px;
+  height: 20px;
+}
+
+.star-rating--lg .star-rating__count {
+  font-size: var(--font-size-sm);
+}

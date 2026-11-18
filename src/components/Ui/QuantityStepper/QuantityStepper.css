@@ -1,0 +1,71 @@
+/* ==========================================================================
+   QuantityStepper — bloco .quantity-stepper
+   Seletor no formato [ - 1 + ]. Modificadores: --sm, --disabled.
+   ========================================================================== */
+
+.quantity-stepper {
+  display: inline-flex;
+  align-items: stretch;
+  height: 44px;
+  overflow: hidden;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.quantity-stepper__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  color: var(--color-text);
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.quantity-stepper__button:hover:not(:disabled) {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary-hover);
+}
+
+.quantity-stepper__button:disabled {
+  color: var(--color-text-muted);
+  opacity: 0.5;
+}
+
+.quantity-stepper__icon {
+  width: 16px;
+  height: 16px;
+}
+
+.quantity-stepper__value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  border-right: var(--border-width) solid var(--color-border);
+  border-left: var(--border-width) solid var(--color-border);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+}
+
+/* --- Modificadores ------------------------------------------------------- */
+
+.quantity-stepper--sm {
+  height: 34px;
+}
+
+.quantity-stepper--sm .quantity-stepper__button {
+  width: 32px;
+}
+
+.quantity-stepper--sm .quantity-stepper__value {
+  min-width: 36px;
+  font-size: var(--font-size-sm);
+}
+
+.quantity-stepper--disabled {
+  opacity: 0.6;
+}
