@@ -1,5 +1,5 @@
 import { Clock, LayoutGrid, Mail, Phone, Search, ShoppingCart, User } from 'lucide-react';
-import { useEffect, useState, type FormEvent } from 'react';
+import { useEffect, useState, type FormEvent, type ReactNode } from 'react';
 import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
@@ -51,7 +51,11 @@ const SOCIAL_LINKS: Array<{ label: string; href: string }> = [
 
 const SEARCH_ROUTE = '/busca';
 
-export function StoreLayout() {
+interface StoreLayoutProps {
+   children?: ReactNode; 
+}
+
+export function StoreLayout({children }: StoreLayoutProps) {
   const { user } = useAuth();
   const { totalItems } = useCart();
   const navigate = useNavigate();
@@ -168,7 +172,7 @@ export function StoreLayout() {
           ------------------------------------------------------------------ */}
       <main className="store-layout__main">
         <div className="container">
-          <Outlet />
+          {children ?? <Outlet />}
         </div>
       </main>
 
