@@ -7,6 +7,7 @@ import { WishlistProvider } from './context/WishlistContext';
 import { Home } from './pages/home/home';
 import {Catalogo} from './pages/catalogo/catalogo';
 import { Busca } from './pages/busca/busca';
+import { Produto } from './pages/produto/produto';
 
 export function App() {
   return (
@@ -18,6 +19,7 @@ export function App() {
               <Route path="/" element={<Home />} />
               <Route path="/catalogo" element={<Catalogo />} />
               <Route path="/busca" element={<Busca />} />
+              <Route path="/produto/:slug" element={<Produto />} />
 
               {/* Adicione aqui as próximas telas conforme forem ficando prontas */}
 
