@@ -1,0 +1,95 @@
+/* ==========================================================================
+   VELOX — Lista de Desejos
+   Bloco: .lista-desejos. Apenas variáveis de variables.css.
+   ========================================================================== */
+
+.lista-desejos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--space-6) var(--container-padding) var(--space-12);
+  font-family: var(--font-family-base);
+  color: var(--color-text);
+}
+
+.lista-desejos__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.lista-desejos__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-dark);
+}
+
+.lista-desejos__title::before {
+  content: '';
+  align-self: stretch;
+  width: var(--space-1);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-sm);
+}
+
+.lista-desejos__subtitle {
+  margin: 0 0 0 var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.lista-desejos__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lista-desejos__item {
+  min-width: 0;
+}
+
+.lista-desejos__feedback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.lista-desejos__feedback--error {
+  color: var(--color-danger);
+  background-color: var(--color-danger-bg);
+  border-radius: var(--radius-md);
+}
+
+.lista-desejos__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-12) var(--space-6);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.lista-desejos__empty-text {
+  margin: 0;
+  max-width: 480px;
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+  text-align: center;
+}
