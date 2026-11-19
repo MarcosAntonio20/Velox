@@ -4,11 +4,11 @@ import { CartProvider } from './context/CartContext';
 import { WishlistProvider } from './context/WishlistContext';
 
 // Ajuste o caminho/nome caso o Claude tenha salvado a Home em outra pasta
-import { Home } from './pages/home/home';
-import {Catalogo} from './pages/catalogo/catalogo';
-import { Busca } from './pages/busca/busca';
-import { Produto } from './pages/produto/produto';
-import { ListaDeDesejos } from './pages/ListaDeDesejos/LIstaDeDesejos';
+import { Home } from './pages/Store/home/home';
+import {Catalogo} from './pages/Store/catalogo/catalogo';
+import { Busca } from './pages/Store/busca/busca';
+import { Produto } from './pages/Store/produto/produto';
+import { ListaDeDesejos } from './pages/Store/ListaDeDesejos/ListaDeDesejos';
 
 export function App() {
   return (
