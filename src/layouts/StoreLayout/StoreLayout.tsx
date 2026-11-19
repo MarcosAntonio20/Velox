@@ -20,12 +20,12 @@ interface FooterLink {
 
 const CATEGORY_LINKS: NavigationLink[] = [
   { label: 'Home', to: '/', end: true },
-  { label: 'Mouses', to: '/categoria/mouses' },
-  { label: 'Teclados', to: '/categoria/teclados' },
-  { label: 'Monitores', to: '/categoria/monitores' },
-  { label: 'Headsets', to: '/categoria/headsets' },
-  { label: 'Cadeiras', to: '/categoria/cadeiras' },
-  { label: 'Microfones', to: '/categoria/microfones' },
+  { label: 'Mouses', to: '/busca?q=mouses' },
+  { label: 'Teclados', to: '/busca?q=teclados' },
+  { label: 'Monitores', to: '/busca?q=monitores' },
+  { label: 'Headsets', to: '/busca?q=headsets' },
+  { label: 'Cadeiras', to: '/busca?q=cadeiras' },
+  { label: 'Microfones', to: '/busca?q=microfones' },
 ];
 
 const INSTITUTIONAL_LINKS: FooterLink[] = [

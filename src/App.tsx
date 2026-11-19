@@ -6,6 +6,7 @@ import { WishlistProvider } from './context/WishlistContext';
 // Ajuste o caminho/nome caso o Claude tenha salvado a Home em outra pasta
 import { Home } from './pages/home/home';
 import {Catalogo} from './pages/catalogo/catalogo';
+import { Busca } from './pages/busca/busca';
 
 export function App() {
   return (
@@ -16,6 +17,7 @@ export function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/catalogo" element={<Catalogo />} />
+              <Route path="/busca" element={<Busca />} />
 
               {/* Adicione aqui as próximas telas conforme forem ficando prontas */}
 
