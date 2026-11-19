@@ -5,7 +5,7 @@
  * (carrossel de produtos com preço antigo) e faixa de benefícios.
  */
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   ArrowRight,
@@ -21,7 +21,6 @@ import {
 import { StoreLayout } from '../../layouts/StoreLayout/StoreLayout';
 import { Button } from '../../components/Ui/Button/Button';
 import { ProductCard } from '../../components/Ui/ProductCard/ProductCard';
-import { useCart } from '../../context/CartContext';
 import { getBanners, getCategories, getProducts } from '../../services/productService';
 import type { Banner, Category, Product } from '../../types';
 import { formatCurrency } from '../../utils/pricing';
@@ -84,7 +83,6 @@ function getTimeLeftToday(): string {
 
 export function Home() {
   const navigate = useNavigate();
-  const { addToCart } = useCart();
 
   const [banners, setBanners] = useState<Banner[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -164,16 +162,6 @@ export function Home() {
 
     return () => window.clearInterval(intervalId);
   }, []);
-
-  /* ------------------------------------------------------------------------
-     Handlers
-     ------------------------------------------------------------------------ */
-  const handleAddToCart = useCallback(
-    (product: Product): void => {
-      addToCart(product, 1);
-    },
-    [addToCart],
-  );
 
   const handleScrollOffers = (direction: 'prev' | 'next'): void => {
     const track = offersTrackRef.current;
@@ -326,7 +314,7 @@ export function Home() {
               <div ref={offersTrackRef} className="home-offers__track">
                 {offers.map((product) => (
                   <div key={product.id} className="home-offers__item">
-                    <ProductCard product={product} onAddToCart={handleAddToCart} />
+                    <ProductCard product={product}/>
                   </div>
                 ))}
               </div>
