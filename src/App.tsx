@@ -3,12 +3,16 @@ import { AuthProvider } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
 import { WishlistProvider } from './context/WishlistContext';
 
-// Ajuste o caminho/nome caso o Claude tenha salvado a Home em outra pasta
+// Rotas de usuario
 import { Home } from './pages/Store/home/home';
-import {Catalogo} from './pages/Store/catalogo/catalogo';
+import { Catalogo } from './pages/Store/catalogo/catalogo';
 import { Busca } from './pages/Store/busca/busca';
 import { Produto } from './pages/Store/produto/produto';
 import { ListaDeDesejos } from './pages/Store/ListaDeDesejos/ListaDeDesejos';
+
+// Rotas de administrador
+import { AdminLayout } from './layouts/AdminLayout/AdminLayout';
+import { Produtos as AdminProdutos } from './pages/Admin/Produto/produto';
 
 export function App() {
   return (
@@ -23,7 +27,9 @@ export function App() {
               <Route path="/produto/:slug" element={<Produto />} />
               <Route path="/ListaDeDesejos" element={<ListaDeDesejos />} />
 
-              {/* Adicione aqui as próximas telas conforme forem ficando prontas */}
+              <Route path="/admin" element={<AdminLayout />}>
+                <Route path="produtos" element={<AdminProdutos />} />
+              </Route>
 
               {/* Evita tela branca se você clicar em um link ainda não criado */}
               <Route path="*" element={<Navigate to="/" replace />} />
