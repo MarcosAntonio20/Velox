@@ -7,14 +7,13 @@
  * sobre o resultado da busca, no cliente.
  */
 
-import { useCallback, useEffect, useMemo, useState, type FormEvent } from 'react';
+import { useEffect, useMemo, useState, type FormEvent } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { StoreLayout } from '../../layouts/StoreLayout/StoreLayout';
 import { Button } from '../../components/Ui/Button/Button';
 import { Pagination } from '../../components/Ui/Pagination/Pagination';
 import { ProductCard } from '../../components/Ui/ProductCard/ProductCard';
 import { StarRating } from '../../components/Ui/StarRating/StarRating';
-import { useCart } from '../../context/CartContext';
 import {
   getCategories,
   getProducts,
@@ -79,7 +78,6 @@ function splitSearchTerms(text: string): string[] {
 }
 
 export function Busca() {
-  const { addToCart } = useCart();
   const [searchParams] = useSearchParams();
 
   const query = (searchParams.get('q') ?? '').trim();
@@ -260,15 +258,6 @@ export function Busca() {
 
   const resultsLabel = totalResults === 1 ? 'produto encontrado' : 'produtos encontrados';
 
-  /* ------------------------------------------------------------------------
-     Handlers
-     ------------------------------------------------------------------------ */
-  const handleToggleBrand = (brand: string): void => {
-    setSelectedBrands((previous) =>
-      previous.includes(brand) ? previous.filter((item) => item !== brand) : [...previous, brand],
-    );
-  };
-
   const handleApplyPrice = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
@@ -301,13 +290,6 @@ export function Busca() {
       setSortBy(selected.value);
     }
   };
-
-  const handleAddToCart = useCallback(
-    (product: Product): void => {
-      addToCart(product, 1);
-    },
-    [addToCart],
-  );
 
   /* ------------------------------------------------------------------------
      Render
@@ -345,7 +327,6 @@ export function Busca() {
                         type="checkbox"
                         className="busca-filters__checkbox"
                         checked={selectedBrands.includes(brand)}
-                        onChange={() => handleToggleBrand(brand)}
                       />
                       <span className="busca-filters__label">{brand}</span>
                     </label>
@@ -468,7 +449,7 @@ export function Busca() {
                 <ul className="busca-results__grid">
                   {pageProducts.map((product) => (
                     <li key={product.id} className="busca-results__item">
-                      <ProductCard product={product} onAddToCart={handleAddToCart} />
+                      <ProductCard product={product} />
                     </li>
                   ))}
                 </ul>
