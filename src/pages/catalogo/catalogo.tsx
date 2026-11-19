@@ -9,7 +9,7 @@
  * aplicados no cliente sobre os produtos carregados do productService.
  */
 
-import { useCallback, useEffect, useMemo, useState, type FormEvent } from 'react';
+import { useEffect, useMemo, useState, type FormEvent } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { StoreLayout } from '../../layouts/StoreLayout/StoreLayout';
 import { Breadcrumb } from '../../components/Ui/Breadcrumb/Breadcrumb';
@@ -17,7 +17,6 @@ import { Button } from '../../components/Ui/Button/Button';
 import { Pagination } from '../../components/Ui/Pagination/Pagination';
 import { ProductCard } from '../../components/Ui//ProductCard/ProductCard';
 import { StarRating } from '../../components/Ui/StarRating/StarRating';
-import { useCart } from '../../context/CartContext';
 import {
   getCategoryBySlug,
   getProducts,
@@ -74,7 +73,6 @@ function parsePriceInput(value: string): number | null {
 }
 
 export function Catalogo() {
-  const { addToCart } = useCart();
   const [searchParams] = useSearchParams();
 
   const categorySlug = searchParams.get('categoria');
@@ -240,15 +238,6 @@ export function Catalogo() {
 
   const productsLabel = filteredProducts.length === 1 ? 'produto' : 'produtos';
 
-  /* ------------------------------------------------------------------------
-     Handlers
-     ------------------------------------------------------------------------ */
-  const handleToggleBrand = (brand: string): void => {
-    setSelectedBrands((previous) =>
-      previous.includes(brand) ? previous.filter((item) => item !== brand) : [...previous, brand],
-    );
-  };
-
   const handleApplyPrice = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
@@ -281,13 +270,6 @@ export function Catalogo() {
       setSortBy(selected.value);
     }
   };
-
-  const handleAddToCart = useCallback(
-    (product: Product): void => {
-      addToCart(product, 1);
-    },
-    [addToCart],
-  );
 
   /* ------------------------------------------------------------------------
      Render
@@ -322,7 +304,6 @@ export function Catalogo() {
                         type="checkbox"
                         className="catalogo-filters__checkbox"
                         checked={selectedBrands.includes(brand)}
-                        onChange={() => handleToggleBrand(brand)}
                       />
                       <span className="catalogo-filters__label">{brand}</span>
                     </label>
@@ -445,7 +426,7 @@ export function Catalogo() {
                 <ul className="catalogo-results__grid">
                   {pageProducts.map((product) => (
                     <li key={product.id} className="catalogo-results__item">
-                      <ProductCard product={product} onAddToCart={handleAddToCart} />
+                      <ProductCard product={product} />
                     </li>
                   ))}
                 </ul>
