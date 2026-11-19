@@ -6,10 +6,9 @@
  * que valida estoque e produto inativo.
  */
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Check } from 'lucide-react';
-import { ShoppingCart } from 'lucide-react';
+import { Check, ShoppingCart } from 'lucide-react';
 import { StoreLayout } from '../../layouts/StoreLayout/StoreLayout';
 import { Breadcrumb } from '../../components/Ui/Breadcrumb/Breadcrumb';
 import { Button } from '../../components/Ui/Button/Button';
@@ -232,13 +231,6 @@ export function Produto() {
     );
   };
 
-  const handleAddRelatedToCart = useCallback(
-    (relatedProduct: Product): void => {
-      addToCart(relatedProduct, 1);
-    },
-    [addToCart],
-  );
-
   /* ------------------------------------------------------------------------
      Estados de carregamento / erro
      ------------------------------------------------------------------------ */
@@ -380,8 +372,13 @@ export function Produto() {
             </div>
 
             <div className="produto-info__buy">
-              <Button onClick={handleAddToCart} disabled={!isAvailable}>
-                <ShoppingCart size={20} aria-hidden="true" />
+              <Button
+                variant="primary"
+                fullWidth
+                leftIcon={ShoppingCart}
+                onClick={handleAddToCart}
+                disabled={!isAvailable}
+              >
                 {isAvailable ? 'Adicionar ao carrinho' : 'Produto indisponível'}
               </Button>
 
@@ -458,7 +455,7 @@ export function Produto() {
             <ul className="produto-related__grid">
               {relatedProducts.map((relatedProduct) => (
                 <li key={relatedProduct.id} className="produto-related__item">
-                  <ProductCard product={relatedProduct} onAddToCart={handleAddRelatedToCart} />
+                  <ProductCard product={relatedProduct} />
                 </li>
               ))}
             </ul>
