@@ -9,18 +9,18 @@
 
 import { useEffect, useMemo, useState, type FormEvent } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { StoreLayout } from '../../layouts/StoreLayout/StoreLayout';
-import { Button } from '../../components/Ui/Button/Button';
-import { Pagination } from '../../components/Ui/Pagination/Pagination';
-import { ProductCard } from '../../components/Ui/ProductCard/ProductCard';
-import { StarRating } from '../../components/Ui/StarRating/StarRating';
+import { StoreLayout } from '../../../layouts/StoreLayout/StoreLayout';
+import { Button } from '../../../components/Ui/Button/Button';
+import { Pagination } from '../../../components/Ui/Pagination/Pagination';
+import { ProductCard } from '../../../components/Ui/ProductCard/ProductCard';
+import { StarRating } from '../../../components/Ui/StarRating/StarRating';
 import {
   getCategories,
   getProducts,
   type ProductSortOption,
-} from '../../services/productService';
-import type { Category, Product } from '../../types';
-import { normalizeText } from '../../utils/helpers';
+} from '../../../services/productService';
+import type { Category, Product } from '../../../types';
+import { normalizeText } from '../../../utils/helpers';
 import './busca.css';
 
 /** Quantidade de produtos por página (grade 3 x 2). */

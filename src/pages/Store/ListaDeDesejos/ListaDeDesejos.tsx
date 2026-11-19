@@ -9,13 +9,13 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { StoreLayout } from '../../layouts/StoreLayout/StoreLayout';
-import { Breadcrumb } from '../../components/Ui/Breadcrumb/Breadcrumb';
-import { Button } from '../../components/Ui/Button/Button';
-import { ProductCard } from '../../components/Ui/ProductCard/ProductCard';
-import { useWishlist } from '../../context/WishlistContext';
-import { getProducts } from '../../services/productService';
-import type { Product } from '../../types';
+import { StoreLayout } from '../../../layouts/StoreLayout/StoreLayout';
+import { Breadcrumb } from '../../../components/Ui/Breadcrumb/Breadcrumb';
+import { Button } from '../../../components/Ui/Button/Button';
+import { ProductCard } from '../../../components/Ui/ProductCard/ProductCard';
+import { useWishlist } from '../../../context/WishlistContext';
+import { getProducts } from '../../../services/productService';
+import type { Product } from '../../../types';
 import './listadedesejos.css';
 
 export function ListaDeDesejos() {

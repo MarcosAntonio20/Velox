@@ -11,18 +11,18 @@
 
 import { useEffect, useMemo, useState, type FormEvent } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { StoreLayout } from '../../layouts/StoreLayout/StoreLayout';
-import { Breadcrumb } from '../../components/Ui/Breadcrumb/Breadcrumb';
-import { Button } from '../../components/Ui/Button/Button';
-import { Pagination } from '../../components/Ui/Pagination/Pagination';
-import { ProductCard } from '../../components/Ui//ProductCard/ProductCard';
-import { StarRating } from '../../components/Ui/StarRating/StarRating';
+import { StoreLayout } from '../../../layouts/StoreLayout/StoreLayout';
+import { Breadcrumb } from '../../../components/Ui/Breadcrumb/Breadcrumb';
+import { Button } from '../../../components/Ui/Button/Button';
+import { Pagination } from '../../../components/Ui/Pagination/Pagination';
+import { ProductCard } from '../../../components/Ui//ProductCard/ProductCard';
+import { StarRating } from '../../../components/Ui/StarRating/StarRating';
 import {
   getCategoryBySlug,
   getProducts,
   type ProductSortOption,
-} from '../../services/productService';
-import type { Category, Product } from '../../types';
+} from '../../../services/productService';
+import type { Category, Product } from '../../../types';
 import './catalogo.css';
 
 /** Quantidade de produtos por página (grade 3 x 3). */

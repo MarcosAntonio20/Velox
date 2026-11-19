@@ -9,21 +9,21 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Check, ShoppingCart } from 'lucide-react';
-import { StoreLayout } from '../../layouts/StoreLayout/StoreLayout';
-import { Breadcrumb } from '../../components/Ui/Breadcrumb/Breadcrumb';
-import { Button } from '../../components/Ui/Button/Button';
-import { ProductCard } from '../../components/Ui/ProductCard/ProductCard';
-import { QuantityStepper } from '../../components/Ui/QuantityStepper/QuantityStepper';
-import { StarRating } from '../../components/Ui/StarRating/StarRating';
-import { StatusBadge } from '../../components/Ui/StatusBadge/StatusBadge';
-import { useCart } from '../../context/CartContext';
+import { StoreLayout } from '../../../layouts/StoreLayout/StoreLayout';
+import { Breadcrumb } from '../../../components/Ui/Breadcrumb/Breadcrumb';
+import { Button } from '../../../components/Ui/Button/Button';
+import { ProductCard } from '../../../components/Ui/ProductCard/ProductCard';
+import { QuantityStepper } from '../../../components/Ui/QuantityStepper/QuantityStepper';
+import { StarRating } from '../../../components/Ui/StarRating/StarRating';
+import { StatusBadge } from '../../../components/Ui/StatusBadge/StatusBadge';
+import { useCart } from '../../../context/CartContext';
 import {
   getCategoryById,
   getProductBySlug,
   getRelatedProducts,
-} from '../../services/productService';
-import type { Category, Product, ProductSpecAttribute } from '../../types';
-import { formatCurrency, roundCurrency } from '../../utils/pricing';
+} from '../../../services/productService';
+import type { Category, Product, ProductSpecAttribute } from '../../../types';
+import { formatCurrency, roundCurrency } from '../../../utils/pricing';
 import './produto.css';
 
 /** Quantidade máxima de uma mesma unidade no carrinho (igual ao CartContext). */

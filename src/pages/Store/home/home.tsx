@@ -18,12 +18,12 @@ import {
   ShieldCheck,
   Truck,
 } from 'lucide-react';
-import { StoreLayout } from '../../layouts/StoreLayout/StoreLayout';
-import { Button } from '../../components/Ui/Button/Button';
-import { ProductCard } from '../../components/Ui/ProductCard/ProductCard';
-import { getBanners, getCategories, getProducts } from '../../services/productService';
-import type { Banner, Category, Product } from '../../types';
-import { formatCurrency } from '../../utils/pricing';
+import { StoreLayout } from '../../../layouts/StoreLayout/StoreLayout';
+import { Button } from '../../../components/Ui/Button/Button';
+import { ProductCard } from '../../../components/Ui/ProductCard/ProductCard';
+import { getBanners, getCategories, getProducts } from '../../../services/productService';
+import type { Banner, Category, Product } from '../../../types';
+import { formatCurrency } from '../../../utils/pricing';
 import './Home.css';
 
 /** Intervalo de troca automática do banner (ms). */
