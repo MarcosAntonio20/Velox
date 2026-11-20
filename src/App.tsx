@@ -14,6 +14,7 @@ import { ListaDeDesejos } from './pages/Store/ListaDeDesejos/ListaDeDesejos';
 import { AdminLayout } from './layouts/AdminLayout/AdminLayout';
 import { Produtos as AdminProdutos } from './pages/Admin/Produto/produto';
 import { ProdutoForm } from './pages/Admin/ProdutoForm/produtoForm';
+import { AdminLogin } from './pages/Admin/AdminLogin/adminLogin';
 
 export function App() {
   return (
@@ -28,6 +29,7 @@ export function App() {
               <Route path="/produto/:slug" element={<Produto />} />
               <Route path="/ListaDeDesejos" element={<ListaDeDesejos />} />
 
+              <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin" element={<AdminLayout />}>
                 <Route path="produtos" element={<AdminProdutos />} />
                 <Route path="produtos/novo" element={<ProdutoForm />} />
