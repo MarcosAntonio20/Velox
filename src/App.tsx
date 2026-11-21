@@ -15,6 +15,7 @@ import { AdminLayout } from './layouts/AdminLayout/AdminLayout';
 import { Produtos as AdminProdutos } from './pages/Admin/Produto/produto';
 import { ProdutoForm } from './pages/Admin/ProdutoForm/produtoForm';
 import { AdminLogin } from './pages/Admin/AdminLogin/adminLogin';
+import { AdminCategorias } from './pages/Admin/Categorias/adminCategorias';
 
 export function App() {
   return (
@@ -34,6 +35,7 @@ export function App() {
                 <Route path="produtos" element={<AdminProdutos />} />
                 <Route path="produtos/novo" element={<ProdutoForm />} />
                 <Route path="produtos/:id/editar" element={<ProdutoForm />} />
+                 <Route path="categorias" element={<AdminCategorias />} />
               </Route>
 
               {/* Evita tela branca se você clicar em um link ainda não criado */}
