@@ -1,0 +1,440 @@
+/* ==========================================================================
+   VELOX — Admin / Estoque
+   Blocos: .admin-estoque, .admin-estoque-filters, .admin-estoque-table,
+   .admin-estoque-modal. Apenas variáveis de variables.css.
+   ========================================================================== */
+
+.admin-estoque {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  width: 100%;
+  font-family: var(--font-family-base);
+  color: var(--color-text);
+}
+
+.admin-estoque__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.admin-estoque__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-dark);
+}
+
+.admin-estoque__title::before {
+  content: '';
+  align-self: stretch;
+  width: var(--space-1);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-sm);
+}
+
+/* Legenda */
+.admin-estoque__legend {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.admin-estoque__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-lg);
+  color: var(--color-text-muted);
+}
+
+/* Bolinhas de status (legenda e selos) */
+.admin-estoque__dot {
+  flex-shrink: 0;
+  width: var(--space-3);
+  height: var(--space-3);
+  border-radius: var(--radius-pill);
+}
+
+.admin-estoque__dot--available {
+  background-color: var(--color-primary);
+}
+
+.admin-estoque__dot--low {
+  background-color: var(--color-warning);
+}
+
+.admin-estoque__dot--out {
+  background-color: var(--color-danger);
+}
+
+.admin-estoque__badge-content {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.admin-estoque__card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.admin-estoque__feedback {
+  margin: 0;
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.admin-estoque__feedback--success {
+  color: var(--color-success);
+  background-color: var(--color-success-bg);
+}
+
+.admin-estoque__feedback--error {
+  color: var(--color-danger);
+  background-color: var(--color-danger-bg);
+}
+
+/* Estoque atual (cor por nível) */
+.admin-estoque__stock-value {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-dark);
+}
+
+.admin-estoque__stock-value--low {
+  color: var(--color-warning);
+}
+
+.admin-estoque__stock-value--out {
+  color: var(--color-danger);
+}
+
+.admin-estoque__stock-unit {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Filtros
+   -------------------------------------------------------------------------- */
+
+.admin-estoque-filters {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+}
+
+.admin-estoque-filters__search {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  max-width: calc(var(--space-24) * 4);
+}
+
+.admin-estoque-filters__search-icon {
+  position: absolute;
+  left: var(--space-4);
+  width: var(--space-5);
+  height: var(--space-5);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.admin-estoque-filters__input,
+.admin-estoque-filters__select {
+  height: var(--space-12);
+  font-family: inherit;
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: var(--border-default);
+  border-radius: var(--radius-sm);
+}
+
+.admin-estoque-filters__input {
+  width: 100%;
+  padding: 0 var(--space-4) 0 var(--space-12);
+}
+
+.admin-estoque-filters__select {
+  min-width: var(--space-24);
+  padding: 0 var(--space-4);
+  cursor: pointer;
+}
+
+.admin-estoque-filters__input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.admin-estoque-filters__input:focus,
+.admin-estoque-filters__select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-focus);
+}
+
+.admin-estoque-filters__submit {
+  margin-left: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Tabela
+   -------------------------------------------------------------------------- */
+
+.admin-estoque__table-wrapper {
+  overflow-x: auto;
+}
+
+.admin-estoque-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-estoque-table__head-row {
+  background-color: var(--color-neutral-bg);
+  border-top: var(--border-default);
+  border-bottom: var(--border-default);
+}
+
+.admin-estoque-table__head-cell {
+  padding: var(--space-4);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-align: left;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-neutral);
+}
+
+.admin-estoque-table__row + .admin-estoque-table__row {
+  border-top: var(--border-default);
+}
+
+.admin-estoque-table__cell {
+  padding: var(--space-4);
+  font-size: var(--font-size-lg);
+  vertical-align: middle;
+  color: var(--color-text);
+}
+
+.admin-estoque-table__cell--minimum {
+  white-space: nowrap;
+  color: var(--color-neutral);
+}
+
+.admin-estoque-table__product {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.admin-estoque-table__thumb {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-12);
+  height: var(--space-12);
+  padding: var(--space-1);
+  background-color: var(--color-surface);
+  border: var(--border-default);
+  border-radius: var(--radius-sm);
+}
+
+.admin-estoque-table__thumb-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.admin-estoque-table__name {
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  color: var(--color-dark);
+}
+
+/* --------------------------------------------------------------------------
+   Rodapé (resumo + paginação)
+   -------------------------------------------------------------------------- */
+
+.admin-estoque__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  border-top: var(--border-default);
+}
+
+.admin-estoque__summary {
+  margin: 0;
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Modal de ajuste
+   -------------------------------------------------------------------------- */
+
+.admin-estoque-modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  background-color: var(--color-overlay);
+}
+
+.admin-estoque-modal__dialog {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  width: 100%;
+  max-width: calc(var(--space-24) * 5);
+  max-height: 100%;
+  padding: var(--space-6);
+  overflow-y: auto;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+}
+
+.admin-estoque-modal__title {
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  color: var(--color-dark);
+}
+
+.admin-estoque-modal__product {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-neutral-bg);
+  border-radius: var(--radius-md);
+}
+
+.admin-estoque-modal__product-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.admin-estoque-modal__product-info {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.admin-estoque-modal__modes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+  padding: var(--space-1);
+  background-color: var(--color-neutral-bg);
+  border-radius: var(--radius-md);
+}
+
+.admin-estoque-modal__mode {
+  height: var(--space-10);
+  padding: 0 var(--space-3);
+  font-family: inherit;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral);
+  background-color: transparent;
+  border: 0;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.admin-estoque-modal__mode:hover {
+  color: var(--color-dark);
+}
+
+.admin-estoque-modal__mode:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.admin-estoque-modal__mode--active {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+
+.admin-estoque-modal__mode--active:hover {
+  color: var(--color-white);
+}
+
+.admin-estoque-modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.admin-estoque-modal__label {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-dark);
+}
+
+.admin-estoque-modal__input {
+  width: 100%;
+  height: var(--space-12);
+  padding: 0 var(--space-4);
+  font-family: inherit;
+  font-size: var(--font-size-lg);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: var(--border-default);
+  border-radius: var(--radius-sm);
+}
+
+.admin-estoque-modal__input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-focus);
+}
+
+.admin-estoque-modal__input:disabled {
+  color: var(--color-text-muted);
+  background-color: var(--color-neutral-bg);
+  cursor: not-allowed;
+}
+
+.admin-estoque-modal__hint {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-snug);
+  color: var(--color-text-muted);
+}
+
+.admin-estoque-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+}
