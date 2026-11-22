@@ -17,6 +17,7 @@ import { ProdutoForm } from './pages/Admin/ProdutoForm/produtoForm';
 import { AdminLogin } from './pages/Admin/AdminLogin/adminLogin';
 import { AdminCategorias } from './pages/Admin/Categorias/adminCategorias';
 import { AdminEstoque } from './pages/Admin/Estoque/adminEstoque';
+import { AdminCupons } from './pages/Admin/Cupons/adminCupons';
 
 export function App() {
   return (
@@ -38,6 +39,7 @@ export function App() {
                 <Route path="produtos/:id/editar" element={<ProdutoForm />} />
                  <Route path="categorias" element={<AdminCategorias />} />
                  <Route path="estoque" element={<AdminEstoque />} />
+                 <Route path="cupons" element={<AdminCupons />} />
               </Route>
 
               {/* Evita tela branca se você clicar em um link ainda não criado */}

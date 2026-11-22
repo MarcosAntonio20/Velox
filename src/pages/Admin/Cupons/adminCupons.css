@@ -1,0 +1,398 @@
+/* ==========================================================================
+   VELOX — Admin / Cupons
+   Blocos: .admin-cupons, .admin-cupons-filters, .admin-cupons-table,
+   .admin-cupons-modal. Apenas variáveis de variables.css.
+   ========================================================================== */
+
+.admin-cupons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  width: 100%;
+  font-family: var(--font-family-base);
+  color: var(--color-text);
+}
+
+.admin-cupons__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.admin-cupons__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-dark);
+}
+
+.admin-cupons__title::before {
+  content: '';
+  align-self: stretch;
+  width: var(--space-1);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-sm);
+}
+
+.admin-cupons__card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.admin-cupons__feedback {
+  margin: 0;
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.admin-cupons__feedback--success {
+  color: var(--color-success);
+  background-color: var(--color-success-bg);
+}
+
+.admin-cupons__feedback--error {
+  color: var(--color-danger);
+  background-color: var(--color-danger-bg);
+}
+
+/* Código do cupom em caixa tracejada verde */
+.admin-cupons__code {
+  display: inline-block;
+  padding: var(--space-3) var(--space-5);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--color-dark);
+  background-color: var(--color-primary-light);
+  border: var(--border-width) dashed var(--color-primary);
+  border-radius: var(--radius-sm);
+}
+
+/* --------------------------------------------------------------------------
+   Filtros
+   -------------------------------------------------------------------------- */
+
+.admin-cupons-filters {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+}
+
+.admin-cupons-filters__search {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  max-width: calc(var(--space-24) * 4);
+}
+
+.admin-cupons-filters__search-icon {
+  position: absolute;
+  left: var(--space-4);
+  width: var(--space-5);
+  height: var(--space-5);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.admin-cupons-filters__input,
+.admin-cupons-filters__select {
+  height: var(--space-12);
+  font-family: inherit;
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: var(--border-default);
+  border-radius: var(--radius-sm);
+}
+
+.admin-cupons-filters__input {
+  width: 100%;
+  padding: 0 var(--space-4) 0 var(--space-12);
+}
+
+.admin-cupons-filters__select {
+  min-width: var(--space-24);
+  padding: 0 var(--space-4);
+  cursor: pointer;
+}
+
+.admin-cupons-filters__input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.admin-cupons-filters__input:focus,
+.admin-cupons-filters__select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-focus);
+}
+
+.admin-cupons-filters__submit {
+  margin-left: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Tabela
+   -------------------------------------------------------------------------- */
+
+.admin-cupons__table-wrapper {
+  overflow-x: auto;
+}
+
+.admin-cupons-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-cupons-table__head-row {
+  background-color: var(--color-neutral-bg);
+  border-top: var(--border-default);
+  border-bottom: var(--border-default);
+}
+
+.admin-cupons-table__head-cell {
+  padding: var(--space-4);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-align: left;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-neutral);
+}
+
+.admin-cupons-table__row + .admin-cupons-table__row {
+  border-top: var(--border-default);
+}
+
+.admin-cupons-table__cell {
+  padding: var(--space-4);
+  font-size: var(--font-size-lg);
+  vertical-align: middle;
+  white-space: nowrap;
+  color: var(--color-text);
+}
+
+.admin-cupons-table__cell--value {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-dark);
+}
+
+.admin-cupons-table__cell--expired {
+  color: var(--color-danger);
+}
+
+.admin-cupons-table__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* --------------------------------------------------------------------------
+   Rodapé (resumo + paginação)
+   -------------------------------------------------------------------------- */
+
+.admin-cupons__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  border-top: var(--border-default);
+}
+
+.admin-cupons__summary {
+  margin: 0;
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Modais
+   -------------------------------------------------------------------------- */
+
+.admin-cupons-modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  background-color: var(--color-overlay);
+}
+
+.admin-cupons-modal__dialog {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  width: 100%;
+  max-width: calc(var(--space-24) * 6);
+  max-height: 100%;
+  padding: var(--space-6);
+  overflow-y: auto;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+}
+
+.admin-cupons-modal__dialog--narrow {
+  max-width: calc(var(--space-24) * 5);
+}
+
+.admin-cupons-modal__title {
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  color: var(--color-dark);
+}
+
+.admin-cupons-modal__text {
+  margin: 0;
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+.admin-cupons-modal__info {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral);
+  background-color: var(--color-neutral-bg);
+  border-radius: var(--radius-md);
+}
+
+.admin-cupons-modal__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4) var(--space-5);
+}
+
+.admin-cupons-modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.admin-cupons-modal__label {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-dark);
+}
+
+.admin-cupons-modal__optional {
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-muted);
+}
+
+.admin-cupons-modal__input,
+.admin-cupons-modal__select {
+  width: 100%;
+  height: var(--space-12);
+  padding: 0 var(--space-4);
+  font-family: inherit;
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: var(--border-default);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.admin-cupons-modal__select {
+  cursor: pointer;
+}
+
+.admin-cupons-modal__input--code {
+  font-family: var(--font-family-mono);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+}
+
+.admin-cupons-modal__input:focus,
+.admin-cupons-modal__select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-focus);
+}
+
+.admin-cupons-modal__input:disabled,
+.admin-cupons-modal__select:disabled {
+  color: var(--color-text-muted);
+  background-color: var(--color-neutral-bg);
+  cursor: not-allowed;
+}
+
+.admin-cupons-modal__input--invalid {
+  border-color: var(--color-danger);
+}
+
+.admin-cupons-modal__error {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-snug);
+  color: var(--color-danger);
+}
+
+.admin-cupons-modal__checks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.admin-cupons-modal__check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.admin-cupons-modal__checkbox {
+  flex-shrink: 0;
+  width: var(--space-5);
+  height: var(--space-5);
+  margin: 0;
+  background-color: var(--color-surface);
+  border: var(--border-width-thick) solid var(--color-neutral);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.admin-cupons-modal__checkbox:checked {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.admin-cupons-modal__checkbox:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.admin-cupons-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+}
