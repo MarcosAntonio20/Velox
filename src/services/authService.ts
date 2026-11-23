@@ -633,3 +633,27 @@ export async function blockCustomer(userId: number): Promise<User> {
 export async function unblockCustomer(userId: number): Promise<User> {
   return setCustomerActiveStatus(userId, true);
 }
+
+/** Exclui um cliente (admin). Clientes com pedidos não podem ser excluídos: bloqueie-os. */
+export async function deleteCustomer(userId: number): Promise<void> {
+  const users = loadUsers();
+  const user = users.find((item) => item.id === userId);
+
+  if (!user) {
+    throw new Error('Cliente não encontrado.');
+  }
+
+  if (user.role !== 'customer') {
+    throw new Error('Apenas contas de clientes podem ser excluídas.');
+  }
+
+  if (loadOrders().some((order) => order.userId === userId)) {
+    throw new Error(
+      'Este cliente possui pedidos e não pode ser excluído. Bloqueie a conta em vez de excluí-la.',
+    );
+  }
+
+  saveUsers(users.filter((item) => item.id !== userId));
+  saveCredentials(loadCredentials().filter((credential) => credential.userId !== userId));
+  saveAddresses(loadAddresses().filter((address) => address.userId !== userId));
+}
