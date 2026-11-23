@@ -19,6 +19,7 @@ import { AdminCategorias } from './pages/Admin/Categorias/adminCategorias';
 import { AdminEstoque } from './pages/Admin/Estoque/adminEstoque';
 import { AdminCupons } from './pages/Admin/Cupons/adminCupons';
 import { AdminBanners } from './pages/Admin/Banners/adminBanners';
+import { AvaliacoesAdmin } from './pages/Admin/Avaliacoes/avaliacoesAdmin';
 
 export function App() {
   return (
@@ -42,6 +43,7 @@ export function App() {
                  <Route path="estoque" element={<AdminEstoque />} />
                  <Route path="cupons" element={<AdminCupons />} />
                  <Route path="banners" element={<AdminBanners />} />
+                 <Route path="avaliacoes" element={<AvaliacoesAdmin />} />
               </Route>
 
               {/* Evita tela branca se você clicar em um link ainda não criado */}

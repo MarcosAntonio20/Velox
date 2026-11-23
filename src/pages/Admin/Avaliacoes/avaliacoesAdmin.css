@@ -1,0 +1,412 @@
+/* ==========================================================================
+   VELOX — Admin / Avaliações
+   Blocos: .avaliacoes-admin, .avaliacoes-admin-filters, .avaliacoes-admin-pills,
+   .avaliacoes-admin-table, .avaliacoes-admin-modal.
+   Apenas variáveis de variables.css.
+   ========================================================================== */
+
+.avaliacoes-admin {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  width: 100%;
+  font-family: var(--font-family-base);
+  color: var(--color-text);
+}
+
+.avaliacoes-admin__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.avaliacoes-admin__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-dark);
+}
+
+.avaliacoes-admin__title::before {
+  content: '';
+  align-self: stretch;
+  width: var(--space-1);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-sm);
+}
+
+.avaliacoes-admin__card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.avaliacoes-admin__feedback {
+  margin: 0;
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.avaliacoes-admin__feedback--success {
+  color: var(--color-success);
+  background-color: var(--color-success-bg);
+}
+
+.avaliacoes-admin__feedback--error {
+  color: var(--color-danger);
+  background-color: var(--color-danger-bg);
+}
+
+/* --------------------------------------------------------------------------
+   Busca
+   -------------------------------------------------------------------------- */
+
+.avaliacoes-admin-filters {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+}
+
+.avaliacoes-admin-filters__search {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  max-width: calc(var(--space-24) * 5);
+}
+
+.avaliacoes-admin-filters__search-icon {
+  position: absolute;
+  left: var(--space-4);
+  width: var(--space-5);
+  height: var(--space-5);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.avaliacoes-admin-filters__input {
+  width: 100%;
+  height: var(--space-12);
+  padding: 0 var(--space-4) 0 var(--space-12);
+  font-family: inherit;
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: var(--border-default);
+  border-radius: var(--radius-sm);
+}
+
+.avaliacoes-admin-filters__input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.avaliacoes-admin-filters__input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-focus);
+}
+
+.avaliacoes-admin-filters__submit {
+  margin-left: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Pílulas de status
+   -------------------------------------------------------------------------- */
+
+.avaliacoes-admin-pills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-6);
+  border-top: var(--border-default);
+}
+
+.avaliacoes-admin-pills__label {
+  margin-right: var(--space-1);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-neutral);
+}
+
+.avaliacoes-admin-pills__pill {
+  height: var(--space-10);
+  padding: 0 var(--space-5);
+  font-family: inherit;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-dark);
+  background-color: var(--color-surface);
+  border: var(--border-default);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.avaliacoes-admin-pills__pill:hover {
+  border-color: var(--color-primary);
+}
+
+.avaliacoes-admin-pills__pill:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.avaliacoes-admin-pills__pill--active {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Tabela
+   -------------------------------------------------------------------------- */
+
+.avaliacoes-admin__table-wrapper {
+  overflow-x: auto;
+}
+
+.avaliacoes-admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.avaliacoes-admin-table__head-row {
+  background-color: var(--color-neutral-bg);
+  border-top: var(--border-default);
+  border-bottom: var(--border-default);
+}
+
+.avaliacoes-admin-table__head-cell {
+  padding: var(--space-4);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-align: left;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-neutral);
+}
+
+.avaliacoes-admin-table__row + .avaliacoes-admin-table__row {
+  border-top: var(--border-default);
+}
+
+.avaliacoes-admin-table__cell {
+  padding: var(--space-4);
+  font-size: var(--font-size-md);
+  vertical-align: middle;
+  color: var(--color-text);
+}
+
+.avaliacoes-admin-table__cell--status {
+  max-width: calc(var(--space-24) * 1.8);
+}
+
+.avaliacoes-admin-table__customer {
+  display: block;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  color: var(--color-dark);
+}
+
+.avaliacoes-admin-table__date {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+}
+
+.avaliacoes-admin-table__product {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.avaliacoes-admin-table__thumb {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-12);
+  height: var(--space-12);
+  padding: var(--space-1);
+  background-color: var(--color-surface);
+  border: var(--border-default);
+  border-radius: var(--radius-sm);
+}
+
+.avaliacoes-admin-table__thumb-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.avaliacoes-admin-table__product-name {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  color: var(--color-dark);
+}
+
+/* Comentário limitado a 2 linhas */
+.avaliacoes-admin-table__comment {
+  display: -webkit-box;
+  max-width: calc(var(--space-24) * 3);
+  margin: 0;
+  overflow: hidden;
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-snug);
+  color: var(--color-text);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+/* Botões de ação em grade 2 x 2 */
+.avaliacoes-admin-table__actions {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: var(--space-2);
+  justify-content: start;
+}
+
+/* --------------------------------------------------------------------------
+   Rodapé (resumo + paginação)
+   -------------------------------------------------------------------------- */
+
+.avaliacoes-admin__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  border-top: var(--border-default);
+}
+
+.avaliacoes-admin__summary {
+  margin: 0;
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Modais
+   -------------------------------------------------------------------------- */
+
+.avaliacoes-admin-modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  background-color: var(--color-overlay);
+}
+
+.avaliacoes-admin-modal__dialog {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  width: 100%;
+  max-width: calc(var(--space-24) * 6);
+  max-height: 100%;
+  padding: var(--space-6);
+  overflow-y: auto;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+}
+
+.avaliacoes-admin-modal__dialog--narrow {
+  max-width: calc(var(--space-24) * 5);
+}
+
+.avaliacoes-admin-modal__heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.avaliacoes-admin-modal__title {
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  color: var(--color-dark);
+}
+
+.avaliacoes-admin-modal__text {
+  margin: 0;
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+.avaliacoes-admin-modal__product {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-neutral-bg);
+  border-radius: var(--radius-md);
+}
+
+.avaliacoes-admin-modal__product-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.avaliacoes-admin-modal__meta {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.avaliacoes-admin-modal__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.avaliacoes-admin-modal__review-title {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-dark);
+}
+
+.avaliacoes-admin-modal__comment {
+  margin: 0;
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text);
+}
+
+.avaliacoes-admin-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+}
