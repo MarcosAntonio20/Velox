@@ -1,0 +1,514 @@
+/* ==========================================================================
+   VELOX — Admin / Pedidos
+   Blocos: .pedidos-admin, .pedidos-admin-filters, .pedidos-admin-pills,
+   .pedidos-admin-table, .pedidos-admin-modal. Apenas variáveis de variables.css.
+   ========================================================================== */
+
+.pedidos-admin {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  width: 100%;
+  font-family: var(--font-family-base);
+  color: var(--color-text);
+}
+
+.pedidos-admin__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.pedidos-admin__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-dark);
+}
+
+.pedidos-admin__title::before {
+  content: '';
+  align-self: stretch;
+  width: var(--space-1);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-sm);
+}
+
+/* O cartão NÃO corta o conteúdo (overflow visível) para o dropdown de status não ser cortado. */
+.pedidos-admin__card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.pedidos-admin__feedback {
+  margin: 0;
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.pedidos-admin__feedback--success {
+  color: var(--color-success);
+  background-color: var(--color-success-bg);
+}
+
+.pedidos-admin__feedback--error {
+  color: var(--color-danger);
+  background-color: var(--color-danger-bg);
+}
+
+.pedidos-admin__hint {
+  margin: 0;
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Busca
+   -------------------------------------------------------------------------- */
+
+.pedidos-admin-filters {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+}
+
+.pedidos-admin-filters__search {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  max-width: calc(var(--space-24) * 4);
+}
+
+.pedidos-admin-filters__search-icon {
+  position: absolute;
+  left: var(--space-4);
+  width: var(--space-5);
+  height: var(--space-5);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.pedidos-admin-filters__input {
+  width: 100%;
+  height: var(--space-12);
+  padding: 0 var(--space-4) 0 var(--space-12);
+  font-family: inherit;
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: var(--border-default);
+  border-radius: var(--radius-sm);
+}
+
+.pedidos-admin-filters__input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.pedidos-admin-filters__input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-focus);
+}
+
+.pedidos-admin-filters__submit {
+  margin-left: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Pílulas de status
+   -------------------------------------------------------------------------- */
+
+.pedidos-admin-pills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-6);
+  border-top: var(--border-default);
+}
+
+.pedidos-admin-pills__label {
+  margin-right: var(--space-1);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-neutral);
+}
+
+.pedidos-admin-pills__pill {
+  height: var(--space-10);
+  padding: 0 var(--space-5);
+  font-family: inherit;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-dark);
+  background-color: var(--color-surface);
+  border: var(--border-default);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.pedidos-admin-pills__pill:hover {
+  border-color: var(--color-primary);
+}
+
+.pedidos-admin-pills__pill:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.pedidos-admin-pills__pill--active {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Tabela
+   -------------------------------------------------------------------------- */
+
+.pedidos-admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pedidos-admin-table__head-row {
+  background-color: var(--color-neutral-bg);
+  border-top: var(--border-default);
+  border-bottom: var(--border-default);
+}
+
+.pedidos-admin-table__head-cell {
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-align: left;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-neutral);
+}
+
+.pedidos-admin-table__row + .pedidos-admin-table__row {
+  border-top: var(--border-default);
+}
+
+.pedidos-admin-table__cell {
+  padding: var(--space-5);
+  font-size: var(--font-size-lg);
+  vertical-align: middle;
+  white-space: nowrap;
+  color: var(--color-text);
+}
+
+.pedidos-admin-table__cell--number {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-dark);
+}
+
+.pedidos-admin-table__cell--muted {
+  color: var(--color-text-muted);
+}
+
+.pedidos-admin-table__cell--total {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-dark);
+}
+
+/* --------------------------------------------------------------------------
+   Dropdown de status
+   -------------------------------------------------------------------------- */
+
+.pedidos-admin__status {
+  position: relative;
+  display: inline-block;
+}
+
+.pedidos-admin__status-trigger {
+  padding: 0;
+  font-family: inherit;
+  background: none;
+  border: 0;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+}
+
+.pedidos-admin__status-trigger:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.pedidos-admin__status-trigger:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.pedidos-admin__status-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.pedidos-admin__status-chevron {
+  width: var(--space-4);
+  height: var(--space-4);
+}
+
+.pedidos-admin__menu {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  left: 0;
+  z-index: var(--z-dropdown);
+  min-width: calc(var(--space-24) * 2.2);
+  margin: 0;
+  padding: var(--space-2) 0;
+  list-style: none;
+  background-color: var(--color-surface);
+  border: var(--border-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+}
+
+.pedidos-admin__menu--up {
+  top: auto;
+  bottom: calc(100% + var(--space-2));
+}
+
+.pedidos-admin__menu-item {
+  display: block;
+  width: 100%;
+  padding: var(--space-3) var(--space-5);
+  font-family: inherit;
+  font-size: var(--font-size-lg);
+  text-align: left;
+  color: var(--color-text);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.pedidos-admin__menu-item:hover:not(:disabled) {
+  background-color: var(--color-neutral-bg);
+}
+
+.pedidos-admin__menu-item:focus-visible {
+  outline: none;
+  background-color: var(--color-neutral-bg);
+  box-shadow: inset var(--shadow-focus);
+}
+
+.pedidos-admin__menu-item--current {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-dark);
+  background-color: var(--color-primary-light);
+}
+
+.pedidos-admin__menu-item:disabled {
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+/* --------------------------------------------------------------------------
+   Rodapé (resumo + paginação)
+   -------------------------------------------------------------------------- */
+
+.pedidos-admin__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  border-top: var(--border-default);
+}
+
+.pedidos-admin__summary {
+  margin: 0;
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Modais
+   -------------------------------------------------------------------------- */
+
+.pedidos-admin-modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  background-color: var(--color-overlay);
+}
+
+.pedidos-admin-modal__dialog {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  width: 100%;
+  max-width: calc(var(--space-24) * 5);
+  max-height: 100%;
+  padding: var(--space-6);
+  overflow-y: auto;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+}
+
+.pedidos-admin-modal__dialog--wide {
+  max-width: calc(var(--space-24) * 8);
+}
+
+.pedidos-admin-modal__heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.pedidos-admin-modal__heading-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.pedidos-admin-modal__title {
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  color: var(--color-dark);
+}
+
+.pedidos-admin-modal__meta {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.pedidos-admin-modal__text {
+  margin: 0;
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+.pedidos-admin-modal__info {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.pedidos-admin-modal__block {
+  padding: var(--space-4);
+  background-color: var(--color-neutral-bg);
+  border-radius: var(--radius-md);
+}
+
+.pedidos-admin-modal__block-title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-neutral);
+}
+
+.pedidos-admin-modal__block-text {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+}
+
+.pedidos-admin-modal__items {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pedidos-admin-modal__items-head {
+  padding: var(--space-3);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-align: left;
+  text-transform: uppercase;
+  color: var(--color-neutral);
+  border-bottom: var(--border-default);
+}
+
+.pedidos-admin-modal__items-head--number {
+  text-align: right;
+}
+
+.pedidos-admin-modal__items-row + .pedidos-admin-modal__items-row {
+  border-top: var(--border-default);
+}
+
+.pedidos-admin-modal__items-cell {
+  padding: var(--space-3);
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+}
+
+.pedidos-admin-modal__items-cell--name {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-dark);
+}
+
+.pedidos-admin-modal__items-cell--number {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.pedidos-admin-modal__totals {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: calc(var(--space-24) * 3);
+  margin: 0 0 0 auto;
+}
+
+.pedidos-admin-modal__total-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+}
+
+.pedidos-admin-modal__total-row dd {
+  margin: 0;
+}
+
+.pedidos-admin-modal__total-row--grand {
+  padding-top: var(--space-2);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-dark);
+  border-top: var(--border-default);
+}
+
+.pedidos-admin-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+}
