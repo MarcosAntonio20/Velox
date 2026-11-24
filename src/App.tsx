@@ -9,6 +9,7 @@ import { Catalogo } from './pages/Store/catalogo/catalogo';
 import { Busca } from './pages/Store/busca/busca';
 import { Produto } from './pages/Store/produto/produto';
 import { ListaDeDesejos } from './pages/Store/ListaDeDesejos/ListaDeDesejos';
+import { Checkout} from './pages/Store/checkout/checkout'
 
 // Rotas de administrador
 import { AdminLayout } from './layouts/AdminLayout/AdminLayout';
@@ -35,6 +36,7 @@ export function App() {
               <Route path="/busca" element={<Busca />} />
               <Route path="/produto/:slug" element={<Produto />} />
               <Route path="/ListaDeDesejos" element={<ListaDeDesejos />} />
+              <Route path="/checkout" element={<Checkout />} />
 
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin" element={<AdminLayout />}>
