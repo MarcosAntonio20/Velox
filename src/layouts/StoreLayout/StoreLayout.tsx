@@ -149,20 +149,27 @@ export function StoreLayout({children }: StoreLayoutProps) {
             Todas as Categorias
           </Link>
 
-          <ul className="store-nav__list">
-            {CATEGORY_LINKS.map((link) => (
-              <li key={link.to} className="store-nav__item">
-                <NavLink
-                  className={({ isActive }) =>
-                    classNames('store-nav__link', isActive && 'store-nav__link--active')
-                  }
-                  to={link.to}
-                  end={link.end}
-                >
-                  {link.label}
-                </NavLink>
-              </li>
-            ))}
+<ul className="store-nav__list">
+            {CATEGORY_LINKS.map((link) => {
+              const currentPath = `${location.pathname}${location.search}`;
+              const isLinkActive = link.end
+                ? location.pathname === link.to
+                : currentPath === link.to;
+
+              return (
+                <li key={link.to} className="store-nav__item">
+                  <Link
+                    className={classNames(
+                      'store-nav__link',
+                      isLinkActive && 'store-nav__link--active',
+                    )}
+                    to={link.to}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </nav>
