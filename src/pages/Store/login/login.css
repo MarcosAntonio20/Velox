@@ -1,0 +1,150 @@
+/* ==========================================================================
+   Login — bloco .login
+   Cartão "Já tenho conta" centralizado, dentro do StoreLayout.
+   Modificador de campo inválido: .login__input--invalid
+   ========================================================================== */
+
+.login {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-4) 0 var(--space-8);
+}
+
+.login__card {
+  width: 100%;
+  max-width: 560px;
+}
+
+.login__title {
+  font-size: var(--font-size-2xl);
+}
+
+.login__content {
+  padding: 0 var(--space-3) var(--space-3);
+}
+
+.login__subtitle {
+  margin: calc(var(--space-3) * -1) 0 var(--space-4) var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* --- Formulário ---------------------------------------------------------- */
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.login__alert {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-danger-bg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-danger);
+}
+
+.login__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.login__label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text);
+}
+
+.login__input {
+  width: 100%;
+  height: 34px;
+  padding: 0 var(--space-3);
+  border: var(--border-width) solid
+    color-mix(in srgb, var(--color-text-muted) 55%, var(--color-border));
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.login__input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.login__input:hover {
+  border-color: var(--color-text-muted);
+}
+
+.login__input:focus {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-focus);
+  outline: none;
+}
+
+.login__input--invalid,
+.login__input--invalid:hover,
+.login__input--invalid:focus {
+  border-color: var(--color-danger);
+}
+
+.login__error {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-danger);
+}
+
+/* --- Lembrar de mim / Esqueci minha senha -------------------------------- */
+
+.login__options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.login__remember {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+}
+
+.login__checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-primary-hover);
+  cursor: pointer;
+}
+
+.login__remember-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+}
+
+.login__link {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-hover);
+}
+
+.login__link:hover {
+  text-decoration: underline;
+}
+
+/* --- Rodapé do cartão ---------------------------------------------------- */
+
+.login__footer {
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: var(--border-width) solid var(--color-border);
+  font-size: var(--font-size-sm);
+  text-align: center;
+  color: var(--color-text-muted);
+}
