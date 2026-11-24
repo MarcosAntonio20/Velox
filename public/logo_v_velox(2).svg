@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="metalLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4A4E52"/>
+      <stop offset="50%" stop-color="#232629"/>
+      <stop offset="100%" stop-color="#111315"/>
+    </linearGradient>
+    <linearGradient id="metalRight" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#585D62"/>
+      <stop offset="50%" stop-color="#26292C"/>
+      <stop offset="100%" stop-color="#111315"/>
+    </linearGradient>
+    <linearGradient id="neonGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#AEEA00"/>
+      <stop offset="50%" stop-color="#76FF03"/>
+      <stop offset="100%" stop-color="#388E3C"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Left Neon Green Under-Blade -->
+  <polygon points="72,118 248,438 228,356 116,172" fill="url(#neonGreen)"/>
+  <!-- Right Neon Green Under-Blade -->
+  <polygon points="440,118 264,438 284,356 396,172" fill="url(#neonGreen)"/>
+
+  <!-- Left Main Dark Metallic Wing -->
+  <polygon points="44,104 196,162 248,438 192,232" fill="url(#metalLeft)" stroke="#76FF03" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Right Main Dark Metallic Wing -->
+  <polygon points="468,104 316,162 264,438 320,232" fill="url(#metalRight)" stroke="#76FF03" stroke-width="2" stroke-linejoin="round"/>
+
+  <!-- Center Neon Green Vertical Split Accent -->
+  <polygon points="256,222 276,204 264,438 256,438" fill="url(#neonGreen)"/>
+  <polygon points="256,222 246,212 248,438 256,438" fill="#1B5E20"/>
+
+  <!-- Top Inner Chevron (Left) -->
+  <polygon points="154,102 224,132 252,216 208,162" fill="url(#metalLeft)" stroke="#76FF03" stroke-width="1.5" stroke-linejoin="round"/>
+  <polygon points="168,112 252,216 218,166" fill="url(#neonGreen)"/>
+
+  <!-- Top Inner Chevron (Right) -->
+  <polygon points="358,102 288,132 260,216 304,162" fill="url(#metalRight)" stroke="#76FF03" stroke-width="1.5" stroke-linejoin="round"/>
+  <polygon points="344,112 260,216 294,166" fill="url(#neonGreen)"/>
+</svg>
