@@ -36,6 +36,9 @@
 }
 
 .store-header__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
   flex-shrink: 0;
   font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-extrabold);
@@ -47,6 +50,13 @@
 
 .store-header__logo:hover {
   color: var(--color-primary-hover);
+}
+
+.store-header__logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 6px;
 }
 
 .store-header__search {

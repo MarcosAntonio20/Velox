@@ -1,9 +1,10 @@
 import { Clock, LayoutGrid, Mail, Phone, Search, ShoppingCart, User } from 'lucide-react';
 import { useEffect, useState, type FormEvent, type ReactNode } from 'react';
-import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
 import { classNames } from '../../utils/helpers';
+import logoVelox from '../../assets/images/Icone.jpg';
 import './StoreLayout.css';
 
 interface NavigationLink {
@@ -52,10 +53,10 @@ const SOCIAL_LINKS: Array<{ label: string; href: string }> = [
 const SEARCH_ROUTE = '/busca';
 
 interface StoreLayoutProps {
-   children?: ReactNode; 
+  children?: ReactNode;
 }
 
-export function StoreLayout({children }: StoreLayoutProps) {
+export function StoreLayout({ children }: StoreLayoutProps) {
   const { user } = useAuth();
   const { totalItems } = useCart();
   const navigate = useNavigate();
@@ -97,7 +98,12 @@ export function StoreLayout({children }: StoreLayoutProps) {
       <header className="store-header">
         <div className="container store-header__inner">
           <Link className="store-header__logo" to="/" aria-label="VELOX — página inicial">
-            VELOX
+            <img
+              src={logoVelox}
+              alt="Símbolo VELOX"
+              className="store-header__logo-img"
+            />
+            <span>VELOX</span>
           </Link>
 
           <form className="store-header__search" role="search" onSubmit={handleSearchSubmit}>
@@ -149,7 +155,7 @@ export function StoreLayout({children }: StoreLayoutProps) {
             Todas as Categorias
           </Link>
 
-<ul className="store-nav__list">
+          <ul className="store-nav__list">
             {CATEGORY_LINKS.map((link) => {
               const currentPath = `${location.pathname}${location.search}`;
               const isLinkActive = link.end
