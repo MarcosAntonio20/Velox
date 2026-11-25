@@ -13,6 +13,7 @@ import { Checkout} from './pages/Store/checkout/checkout'
 import { Login } from './pages/Store/login/login';
 import { Cadastro } from './pages/Store/cadastro/cadastro';
 import { Cart as Carrinho } from './pages/Store/carrinho/carrinho';
+import { PedidoConfirmado } from './pages/Store/PedidoConfirmado/PedidoConfimado';
 
 // Rotas de administrador
 import { AdminLayout } from './layouts/AdminLayout/AdminLayout';
@@ -43,6 +44,8 @@ export function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/cadastro" element={<Cadastro />} />
               <Route path="/carrinho" element={<Carrinho />} />
+              <Route path="/pedido-confirmado" element={<PedidoConfirmado />} />
+              <Route path="/pedido-confirmado/:id" element={<PedidoConfirmado />} />
 
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin" element={<AdminLayout />}>

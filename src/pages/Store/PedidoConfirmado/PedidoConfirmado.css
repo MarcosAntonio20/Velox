@@ -1,0 +1,153 @@
+/* ==========================================================================
+   VELOX — Pedido confirmado (/pedido-confirmado/:id)
+   Metodologia BEM. Apenas variáveis de variables.css.
+   Largura e padding horizontal vêm do .container do StoreLayout.
+   ========================================================================== */
+
+.order-confirmed {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: var(--space-12) 0 var(--space-16);
+  font-family: var(--font-family-base);
+  color: var(--color-text);
+}
+
+.order-confirmed__card {
+  width: 100%;
+  max-width: calc(var(--container-max-width) * 0.55);
+}
+
+.order-confirmed__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-2) var(--space-4);
+}
+
+/* --------------------------------------------------------------------------
+   Ícone de confirmação
+   -------------------------------------------------------------------------- */
+
+.order-confirmed__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--space-20) + var(--space-4));
+  height: calc(var(--space-20) + var(--space-4));
+  border-radius: var(--radius-pill);
+  background-color: var(--color-primary);
+  box-shadow: 0 0 0 var(--space-2) var(--color-primary-light);
+  color: var(--color-white);
+}
+
+.order-confirmed__icon-check {
+  width: var(--space-10);
+  height: var(--space-10);
+  stroke-width: 2.5;
+}
+
+/* --------------------------------------------------------------------------
+   Título e subtítulo
+   -------------------------------------------------------------------------- */
+
+.order-confirmed__title {
+  margin: var(--space-6) 0 0;
+  padding-left: var(--space-3);
+  border-left: var(--space-1) solid var(--color-primary);
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  text-align: center;
+  color: var(--color-dark);
+}
+
+.order-confirmed__subtitle {
+  margin: var(--space-2) 0 0;
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Quadro resumo
+   -------------------------------------------------------------------------- */
+
+.order-confirmed__summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4) var(--space-6);
+  width: 100%;
+  margin: var(--space-6) 0 0;
+  padding: var(--space-5) var(--space-5);
+  border-radius: var(--radius-md);
+  background-color: var(--color-neutral-bg);
+}
+
+.order-confirmed__summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.order-confirmed__summary-item--full {
+  grid-column: 1 / -1;
+}
+
+.order-confirmed__summary-label {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-snug);
+  color: var(--color-text-muted);
+}
+
+.order-confirmed__summary-value {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  color: var(--color-dark);
+  overflow-wrap: anywhere;
+}
+
+/* --------------------------------------------------------------------------
+   Ações
+   -------------------------------------------------------------------------- */
+
+.order-confirmed__actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+  width: 100%;
+  margin-top: var(--space-6);
+}
+
+/* --------------------------------------------------------------------------
+   Pedido não encontrado
+   -------------------------------------------------------------------------- */
+
+.order-confirmed__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-8) var(--space-4);
+  text-align: center;
+}
+
+.order-confirmed__empty-title {
+  margin: 0;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-dark);
+}
+
+.order-confirmed__empty-text {
+  margin: 0 0 var(--space-2);
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+}
