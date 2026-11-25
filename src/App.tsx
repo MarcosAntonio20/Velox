@@ -12,6 +12,7 @@ import { ListaDeDesejos } from './pages/Store/ListaDeDesejos/ListaDeDesejos';
 import { Checkout} from './pages/Store/checkout/checkout'
 import { Login } from './pages/Store/login/login';
 import { Cadastro } from './pages/Store/cadastro/cadastro';
+import { Cart as Carrinho } from './pages/Store/carrinho/carrinho';
 
 // Rotas de administrador
 import { AdminLayout } from './layouts/AdminLayout/AdminLayout';
@@ -41,6 +42,7 @@ export function App() {
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/login" element={<Login />} />
               <Route path="/cadastro" element={<Cadastro />} />
+              <Route path="/carrinho" element={<Carrinho />} />
 
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin" element={<AdminLayout />}>
