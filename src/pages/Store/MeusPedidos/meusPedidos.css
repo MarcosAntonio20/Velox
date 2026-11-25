@@ -1,0 +1,184 @@
+/* ==========================================================================
+   VELOX — Meus pedidos (/minha-conta/pedidos)
+   Metodologia BEM. Apenas variáveis de variables.css.
+   Largura e padding horizontal vêm do .container do StoreLayout.
+   ========================================================================== */
+
+.my-orders {
+  width: 100%;
+  padding: var(--space-5) 0 var(--space-12);
+  font-family: var(--font-family-base);
+  color: var(--color-text);
+}
+
+.my-orders__breadcrumb {
+  margin-bottom: var(--space-3);
+}
+
+/* --------------------------------------------------------------------------
+   Título da página
+   -------------------------------------------------------------------------- */
+
+.my-orders__title {
+  margin: 0 0 var(--space-6);
+  padding-left: var(--space-3);
+  border-left: var(--space-1) solid var(--color-primary);
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-dark);
+}
+
+/* --------------------------------------------------------------------------
+   Lista de pedidos
+   -------------------------------------------------------------------------- */
+
+.my-orders__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.my-orders__list-item {
+  margin: 0;
+}
+
+.my-orders__card {
+  width: 100%;
+}
+
+.my-orders__order {
+  display: grid;
+  grid-template-columns:
+    auto minmax(0, 1.5fr) minmax(0, 0.9fr) minmax(0, 1.1fr)
+    minmax(0, 3fr) auto;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+/* --------------------------------------------------------------------------
+   Miniatura
+   -------------------------------------------------------------------------- */
+
+.my-orders__thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-16);
+  height: var(--space-16);
+  overflow: hidden;
+  border: var(--border-default);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+}
+
+.my-orders__thumb-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* --------------------------------------------------------------------------
+   Identificação do pedido
+   -------------------------------------------------------------------------- */
+
+.my-orders__identification {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.my-orders__number {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  color: var(--color-dark);
+}
+
+.my-orders__date {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-snug);
+  color: var(--color-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Informações (produtos / valor total)
+   -------------------------------------------------------------------------- */
+
+.my-orders__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin: 0;
+  min-width: 0;
+}
+
+.my-orders__info-label {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-snug);
+  color: var(--color-text-muted);
+}
+
+.my-orders__info-value {
+  margin: 0;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  color: var(--color-dark);
+}
+
+/* --------------------------------------------------------------------------
+   Status e ação
+   -------------------------------------------------------------------------- */
+
+.my-orders__status {
+  display: flex;
+  align-items: center;
+}
+
+.my-orders__action {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* --------------------------------------------------------------------------
+   Estados: carregando, erro e vazio
+   -------------------------------------------------------------------------- */
+
+.my-orders__feedback {
+  min-height: var(--space-16);
+  margin: 0;
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+}
+
+.my-orders__feedback--error {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+
+.my-orders__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-16) var(--space-6);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.my-orders__empty-text {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  color: var(--color-text-muted);
+}
