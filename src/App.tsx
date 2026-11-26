@@ -16,6 +16,7 @@ import { Cart as Carrinho } from './pages/Store/carrinho/carrinho';
 import { PedidoConfirmado } from './pages/Store/PedidoConfirmado/PedidoConfimado';
 import { MeusPedidos } from './pages/Store/MeusPedidos/meusPedidos';
 import { PaginaDoUsuario } from './pages/Store/PaginaDeUsuario/paginaDoUsuario';
+import { DetalhesPedido } from './pages/Store/DetalhesPedido/detalhesPedido';
 
 // Rotas de administrador
 import { AdminLayout } from './layouts/AdminLayout/AdminLayout';
@@ -50,6 +51,7 @@ export function App() {
               <Route path="/pedido-confirmado/:id" element={<PedidoConfirmado />} />
               <Route path="/meus-pedidos" element={<MeusPedidos />} />
               <Route path="/minha-conta" element={<PaginaDoUsuario />} />
+              <Route path="/minha-conta/pedidos/:id" element={<DetalhesPedido />} />
 
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin" element={<AdminLayout />}>
