@@ -1,9 +1,12 @@
 /**
  * VELOX — Contexto de autenticação.
  *
- * Mantém o usuário logado (cliente ou administrador), seus endereços e as
- * ações de conta. A sessão é persistida pelo authService (localStorage) e
- * restaurada automaticamente ao abrir a aplicação.
+ * Mantém o cliente logado na loja (`user`), o administrador logado no painel
+ * (`adminUser`), os endereços do cliente e as ações de conta.
+ *
+ * Cliente e administrador têm sessões SEPARADAS: entrar no painel administrativo
+ * não loga o navegador como cliente (e vice-versa). As sessões são persistidas pelo
+ * authService (localStorage) e restauradas ao abrir a aplicação.
  *
  * Ordem dos providers: AuthProvider deve envolver CartProvider e WishlistProvider.
  */
@@ -22,6 +25,7 @@ import {
   changePassword as changePasswordRequest,
   deleteAddress as deleteAddressRequest,
   getAddressesByUser,
+  getCurrentAdmin,
   getCurrentUser,
   loginAdmin as loginAdminRequest,
   loginCustomer as loginCustomerRequest,
@@ -42,16 +46,24 @@ interface AddressState {
 }
 
 export interface AuthContextValue {
+  /** Cliente logado na loja (nunca um administrador). */
   user: User | null;
+  /** Administrador logado no painel (sessão independente da do cliente). */
+  adminUser: User | null;
   addresses: UserAddress[];
-  /** true enquanto a sessão salva está sendo restaurada na abertura da aplicação. */
+  /** true enquanto as sessões salvas estão sendo restauradas na abertura da aplicação. */
   isLoading: boolean;
+  /** true quando há um CLIENTE logado. */
   isAuthenticated: boolean;
+  /** true quando há um ADMINISTRADOR logado no painel. */
   isAdmin: boolean;
   login: (email: string, password: string) => Promise<User>;
   loginAdmin: (email: string, password: string) => Promise<User>;
   register: (input: RegisterInput) => Promise<User>;
+  /** Encerra a sessão do cliente (não afeta a do administrador). */
   logout: () => Promise<void>;
+  /** Encerra a sessão do administrador (não afeta a do cliente). */
+  logoutAdmin: () => Promise<void>;
   updateProfile: (input: UpdateProfileInput) => Promise<User>;
   changePassword: (currentPassword: string, newPassword: string) => Promise<void>;
   addAddress: (input: AddressInput) => Promise<UserAddress>;
@@ -69,24 +81,27 @@ interface AuthProviderProps {
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
+  const [adminUser, setAdminUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [addressState, setAddressState] = useState<AddressState>({ ownerId: null, items: [] });
 
   const userId = user ? user.id : null;
 
-  // Restaura a sessão salva ao abrir a aplicação.
+  // Restaura as sessões salvas (cliente e administrador) ao abrir a aplicação.
   useEffect(() => {
     let isCancelled = false;
 
-    getCurrentUser()
-      .then((currentUser) => {
+    Promise.all([getCurrentUser(), getCurrentAdmin()])
+      .then(([currentUser, currentAdmin]) => {
         if (!isCancelled) {
           setUser(currentUser);
+          setAdminUser(currentAdmin);
         }
       })
       .catch(() => {
         if (!isCancelled) {
           setUser(null);
+          setAdminUser(null);
         }
       })
       .finally(() => {
@@ -100,7 +115,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     };
   }, []);
 
-  // Carrega os endereços sempre que o usuário logado muda.
+  // Carrega os endereços sempre que o cliente logado muda.
   useEffect(() => {
     if (userId === null) {
       return;
@@ -125,7 +140,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     };
   }, [userId]);
 
-  // Endereços só valem para o usuário atual (evita mostrar dados do usuário anterior).
+  // Endereços só valem para o cliente atual (evita mostrar dados do usuário anterior).
   const addresses = useMemo<UserAddress[]>(
     () => (userId !== null && addressState.ownerId === userId ? addressState.items : []),
     [userId, addressState],
@@ -152,7 +167,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   const loginAdmin = useCallback(async (email: string, password: string): Promise<User> => {
     const session = await loginAdminRequest(email, password);
-    setUser(session.user);
+    // Só o painel administrativo enxerga essa sessão: a loja continua sem cliente logado.
+    setAdminUser(session.user);
     return session.user;
   }, []);
 
@@ -163,9 +179,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, []);
 
   const logout = useCallback(async (): Promise<void> => {
-    await logoutRequest();
+    await logoutRequest('customer');
     setUser(null);
     setAddressState({ ownerId: null, items: [] });
+  }, []);
+
+  const logoutAdmin = useCallback(async (): Promise<void> => {
+    await logoutRequest('admin');
+    setAdminUser(null);
   }, []);
 
   const updateProfile = useCallback(
@@ -229,14 +250,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const value = useMemo<AuthContextValue>(
     () => ({
       user,
+      adminUser,
       addresses,
       isLoading,
       isAuthenticated: user !== null,
-      isAdmin: user !== null && user.role === 'admin',
+      isAdmin: adminUser !== null,
       login,
       loginAdmin,
       register,
       logout,
+      logoutAdmin,
       updateProfile,
       changePassword,
       addAddress,
@@ -247,12 +270,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }),
     [
       user,
+      adminUser,
       addresses,
       isLoading,
       login,
       loginAdmin,
       register,
       logout,
+      logoutAdmin,
       updateProfile,
       changePassword,
       addAddress,

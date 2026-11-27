@@ -24,6 +24,7 @@ import type { Order, User, UserAddress } from '../types';
 import { normalizeText, removeUndefined } from '../utils/helpers';
 import {
   STORAGE_KEYS,
+  STORAGE_PREFIX,
   generateNextId,
   readStorage,
   removeStorage,
@@ -192,8 +193,17 @@ const saveCredentials = (value: UserCredential[]): void =>
 
 const loadOrders = (): Order[] => readStorage<Order[]>(STORAGE_KEYS.orders, () => seedOrders);
 
-const loadSession = (): StoredSession | null =>
-  readStorage<StoredSession | null>(STORAGE_KEYS.session, () => null);
+/**
+ * Cliente e administrador têm sessões SEPARADAS (chaves diferentes do localStorage).
+ * Assim, entrar no painel admin não "loga" o navegador como cliente na loja, e vice-versa.
+ */
+const ADMIN_SESSION_KEY = `${STORAGE_PREFIX}admin-session`;
+
+const getSessionKey = (role: User['role']): string =>
+  role === 'admin' ? ADMIN_SESSION_KEY : STORAGE_KEYS.session;
+
+const loadSession = (role: User['role']): StoredSession | null =>
+  readStorage<StoredSession | null>(getSessionKey(role), () => null);
 
 function createSession(user: User): AuthSession {
   const token = `velox-mock-token-${user.id}-${Date.now().toString(36)}`;
@@ -203,7 +213,7 @@ function createSession(user: User): AuthSession {
     createdAt: new Date().toISOString(),
   };
 
-  writeStorage(STORAGE_KEYS.session, session);
+  writeStorage(getSessionKey(user.role), session);
   return { user, token };
 }
 
@@ -351,14 +361,14 @@ export async function registerCustomer(input: RegisterInput): Promise<AuthSessio
   return createSession(user);
 }
 
-/** Encerra a sessão atual. */
-export async function logout(): Promise<void> {
-  removeStorage(STORAGE_KEYS.session);
+/** Encerra a sessão do papel informado (padrão: cliente). A sessão do outro papel não é afetada. */
+export async function logout(role: User['role'] = 'customer'): Promise<void> {
+  removeStorage(getSessionKey(role));
 }
 
-/** Restaura o usuário da sessão salva (ou null se não houver / conta bloqueada). */
-export async function getCurrentUser(): Promise<User | null> {
-  const session = loadSession();
+/** Restaura o usuário da sessão salva do papel informado (ou null se não houver / conta bloqueada). */
+async function restoreSession(role: User['role']): Promise<User | null> {
+  const session = loadSession(role);
 
   if (!session) {
     return null;
@@ -366,12 +376,24 @@ export async function getCurrentUser(): Promise<User | null> {
 
   const user = loadUsers().find((item) => item.id === session.userId);
 
-  if (!user || !user.isActive) {
-    removeStorage(STORAGE_KEYS.session);
+  // Sessão inválida: usuário removido, bloqueado ou com papel diferente do esperado
+  // (inclui sessões antigas de admin que ficaram salvas na chave de cliente).
+  if (!user || !user.isActive || user.role !== role) {
+    removeStorage(getSessionKey(role));
     return null;
   }
 
   return user;
+}
+
+/** Cliente logado na loja (ou null). Nunca devolve um administrador. */
+export async function getCurrentUser(): Promise<User | null> {
+  return restoreSession('customer');
+}
+
+/** Administrador logado no painel (ou null). */
+export async function getCurrentAdmin(): Promise<User | null> {
+  return restoreSession('admin');
 }
 
 export async function getUserById(userId: number): Promise<User | null> {
