@@ -38,8 +38,8 @@ const INSTITUTIONAL_LINKS: FooterLink[] = [
 
 const ACCOUNT_LINKS: FooterLink[] = [
   { label: 'Minha conta', to: '/minha-conta' },
-  { label: 'Meus pedidos', to: '/minha-conta/pedidos' },
-  { label: 'Lista de desejos', to: '/favoritos' },
+  { label: 'Meus pedidos', to: '/meus-pedidos' },
+  { label: 'Lista de desejos', to: '/ListaDeDesejos' },
   { label: 'Carrinho', to: '/carrinho' },
 ];
 
