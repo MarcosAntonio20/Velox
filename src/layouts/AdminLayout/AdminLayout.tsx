@@ -47,7 +47,7 @@ function getSectionTitle(pathname: string): string {
 }
 
 export function AdminLayout() {
-  const { user, isAdmin, isLoading, logout } = useAuth();
+  const { adminUser, isAdmin, isLoading, logoutAdmin } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -62,7 +62,7 @@ export function AdminLayout() {
   }
 
   const handleLogout = async (): Promise<void> => {
-    await logout();
+    await logoutAdmin();
     navigate(ADMIN_LOGIN_ROUTE, { replace: true });
   };
 
@@ -120,7 +120,7 @@ export function AdminLayout() {
             </span>
             <span className="admin-topbar__profile-text">
               <span className="admin-topbar__profile-name">Administrador</span>
-              {user ? <span className="admin-topbar__profile-email">{user.email}</span> : null}
+              {adminUser ? <span className="admin-topbar__profile-email">{adminUser.email}</span> : null}
             </span>
           </div>
         </header>
